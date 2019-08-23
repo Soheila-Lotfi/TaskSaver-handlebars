@@ -37,3 +37,35 @@ connection.connect(function(err) {
 
   console.log("connected as id " + connection.threadId);
 });
+
+//routes
+
+// show the tasks on the browser
+app.get("/", function(req, res) {
+  connection.query("SELECT * FROM tasks", function(err, data) {
+    if (err) throw err;
+
+    res.render("index", { tasks: data });
+  });
+});
+
+// get the user input and post it to the server
+
+app.post("/", function(req, res) {
+  connection.query(
+    "INSERT INTO tasks (task) VALUES (?)",
+    [req.body.task],
+    function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.redirect("/");
+    }
+  );
+});
+
+// start the sarver
+
+app.listen(PORT, function() {
+  // Log (server-side) when our server has started
+  console.log("Server listening on: http://localhost:" + PORT);
+});
