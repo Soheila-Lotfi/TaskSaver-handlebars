@@ -7,7 +7,7 @@ Soheila Lotfi
 
 This app saves the task you need to get to later.
 
-* **Instruction** *
+# Instruction
 
 * Using handlebars,  express, and mysql to create a route called /. When the route is hit, it will display the id and task to do. 
 
